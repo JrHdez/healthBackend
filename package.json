@@ -1,0 +1,32 @@
+{
+  "name": "smarthealth",
+  "version": "1.0.0",
+  "description": "Backend SmartHealth",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ionic",
+    "health",
+    "nodejs"
+  ],
+  "author": "ESMART",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "bluebird": "^3.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pg-promise": "^10.11.1",
+    "qrcode-terminal": "^0.12.0",
+    "twilio": "^3.81.0",
+    "whatsapp-web.js": "^1.17.1"
+  }
+}
