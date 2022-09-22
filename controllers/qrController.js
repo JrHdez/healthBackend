@@ -34,11 +34,11 @@ module.exports = {
                 };
 
                 let telefonos = Object.values(contacts);
-                console.log('OME GONONEA OME',telefonos)
                 for(let i=0; i< telefonos.length; i++){
                     if (telefonos[i] != null && telefonos[i] != ""){
                         try{
-                            client.sendMessage(`57${telefonos[i]}@c.us`, `${data.name}, el código QR ha sido escaneado. Toca para mirar la ubicación`);
+                            client.sendMessage(`57${telefonos[i]}@c.us`, `${data.name}, el código QR ha sido escaneado. Toca para mirar la ubicación:
+https://maps.google.com/?q=${latitude},${longitude}`);
                         }catch(e){
                             console.log('Error mandando mensaje whatsapp');
                         }

@@ -1,13 +1,6 @@
-2022/09/20-09:13:11.653 5998 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2022/09/20-09:13:11.654 5998 Recovering log #106
-2022/09/20-09:13:11.803 5998 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000106.log 
-2022/09/20-09:13:23.172 7e90 Level-0 table #111: started
-2022/09/20-09:13:23.196 7e90 Level-0 table #111: 1202363 bytes OK
-2022/09/20-09:13:23.198 7e90 Delete type=0 #106
-2022/09/20-09:13:23.599 7e90 Compacting 1@1 + 1@2 files
-2022/09/20-09:13:23.662 7e90 Generated table #112@1: 31123 keys, 2209591 bytes
-2022/09/20-09:13:23.671 7e90 Generated table #113@1: 10678 keys, 234325 bytes
-2022/09/20-09:13:23.672 7e90 Compacted 1@1 + 1@2 files => 2443916 bytes
-2022/09/20-09:13:23.673 7e90 compacted to: files[ 0 0 3 0 0 0 0 ]
-2022/09/20-09:13:23.673 7e90 Delete type=2 #108
-2022/09/20-09:13:23.673 7e90 Delete type=2 #111
+2022/09/20-10:05:23.138 60c4 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/09/20-10:05:23.138 60c4 Recovering log #110
+2022/09/20-10:05:23.264 60c4 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000110.log 
+2022/09/20-10:14:14.541 60c4 Level-0 table #116: started
+2022/09/20-10:14:14.561 60c4 Level-0 table #116: 1151829 bytes OK
+2022/09/20-10:14:14.562 60c4 Delete type=0 #110
