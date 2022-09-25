@@ -2,7 +2,7 @@ const QR = require('../models/qr');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const client = require('../whats-app/whatsapp');
+// const client = require('../whats-app/whatsapp');
 const accountSid = 'AC3af222142270c82efd77831c6772b863'; 
 const authToken = 'fe17acd033e313f5bfe40fa5e593c4ef'; 
 // const client = require('twilio')(accountSid, authToken);
@@ -15,6 +15,7 @@ module.exports = {
             const code_request = req.query.code_request;
             const latitude = req.query.latitude;
             const longitude = req.query.longitude;
+            const objeto = req.query.objeto;
             const data = await QR.findByBandCode(code_request);
             const contacts = await QR.findContacts(data.id)
             console.log("contacts",contacts);
@@ -24,10 +25,17 @@ module.exports = {
 
             if (data){
 
+                let mensajeEspanol = `${data.name}, el código QR ha sido escaneado`;
+                let mensajeIngles = `${data.name}, the QR code has been scanned`;
+
+                if (objeto != ''){
+                    mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu ${objeto}.`
+                }
+
                 const notification = {
                     "app_id": "d972c946-2ec3-48b7-bf2b-cc89f84320db",
                     "data": {"userId": "PostMan1234"},
-                    "contents": {"en": `${data.name}, the QR code has been scanned. Tap to see location`, "es": `${data.name}, el código QR ha sido escaneado. Toca para mirar la ubicación`},
+                    "contents": {"en": `${mensajeIngles}. Tap to see location`, "es": `${mensajeEspanol}. Toca para mirar la ubicación`},
                     "heading": {"en": "Alerta", "es": "Este es el título"},
                     "include_player_ids": [`${data.notificationid}`],
                     "url": `https://maps.google.com/?q=${latitude},${longitude}`
@@ -37,7 +45,7 @@ module.exports = {
                 for(let i=0; i< telefonos.length; i++){
                     if (telefonos[i] != null && telefonos[i] != ""){
                         try{
-                            client.sendMessage(`57${telefonos[i]}@c.us`, `${data.name}, el código QR ha sido escaneado. Toca para mirar la ubicación:
+                            client.sendMessage(`57${telefonos[i]}@c.us`, `${mensajeEspanol}. Toca para mirar la ubicación:
 https://maps.google.com/?q=${latitude},${longitude}`);
                         }catch(e){
                             console.log('Error mandando mensaje whatsapp');

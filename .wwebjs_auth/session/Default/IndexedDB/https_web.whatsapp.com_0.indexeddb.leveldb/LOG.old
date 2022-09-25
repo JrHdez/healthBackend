@@ -1,6 +1,23 @@
-2022/09/20-10:05:23.138 60c4 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2022/09/20-10:05:23.138 60c4 Recovering log #110
-2022/09/20-10:05:23.264 60c4 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000110.log 
-2022/09/20-10:14:14.541 60c4 Level-0 table #116: started
-2022/09/20-10:14:14.561 60c4 Level-0 table #116: 1151829 bytes OK
-2022/09/20-10:14:14.562 60c4 Delete type=0 #110
+2022/09/20-10:16:32.316 898c Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/09/20-10:16:32.317 898c Recovering log #115
+2022/09/20-10:16:32.318 898c Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000115.log 
+2022/09/20-10:16:33.058 8ea4 Compacting 1@1 + 3@2 files
+2022/09/20-10:16:33.135 8ea4 Generated table #118@1: 31857 keys, 2229417 bytes
+2022/09/20-10:16:33.156 8ea4 Generated table #119@1: 21655 keys, 613726 bytes
+2022/09/20-10:16:33.156 8ea4 Compacted 1@1 + 3@2 files => 2843143 bytes
+2022/09/20-10:16:33.157 8ea4 compacted to: files[ 0 0 2 0 0 0 0 ]
+2022/09/20-10:16:33.157 8ea4 Delete type=2 #100
+2022/09/20-10:16:33.157 8ea4 Delete type=2 #112
+2022/09/20-10:16:33.157 8ea4 Delete type=2 #113
+2022/09/20-10:16:33.157 8ea4 Delete type=2 #116
+2022/09/20-15:32:48.488 3690 Level-0 table #121: started
+2022/09/20-15:32:48.547 3690 Level-0 table #121: 1133420 bytes OK
+2022/09/20-15:32:48.549 3690 Delete type=0 #115
+2022/09/20-15:35:11.025 9688 Compacting 1@1 + 2@2 files
+2022/09/20-15:35:11.101 9688 Generated table #122@1: 35220 keys, 2222433 bytes
+2022/09/20-15:35:11.131 9688 Generated table #123@1: 27273 keys, 1021649 bytes
+2022/09/20-15:35:11.131 9688 Compacted 1@1 + 2@2 files => 3244082 bytes
+2022/09/20-15:35:11.132 9688 compacted to: files[ 0 0 2 0 0 0 0 ]
+2022/09/20-15:35:11.133 9688 Delete type=2 #118
+2022/09/20-15:35:11.133 9688 Delete type=2 #119
+2022/09/20-15:35:11.133 9688 Delete type=2 #121
