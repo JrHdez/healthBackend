@@ -15,7 +15,7 @@ const databaseConfig = {
     'host': 'localhost',
     'port': 5432,
     'database': 'esmarthealth',
-    'user': 'esmarthealth ',
+    'user': 'esmarthealth',
     'password': 'eshp.2022'
 };
 
