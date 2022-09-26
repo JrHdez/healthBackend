@@ -2,7 +2,7 @@ const QR = require('../models/qr');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-// const client = require('../whats-app/whatsapp');
+const client = require('../whats-app/whatsapp');
 const accountSid = 'AC3af222142270c82efd77831c6772b863'; 
 const authToken = 'fe17acd033e313f5bfe40fa5e593c4ef'; 
 // const client = require('twilio')(accountSid, authToken);
