@@ -27,9 +27,9 @@ module.exports = {
 
                 let mensajeEspanol = `${data.name}, el código QR ha sido escaneado`;
                 let mensajeIngles = `${data.name}, the QR code has been scanned`;
-
+                console.log('objeto',objeto);
                 if (objeto != ''){
-                    mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu ${objeto}.`
+                    mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu obeto: ${objeto}.`
                 }
 
                 const notification = {
