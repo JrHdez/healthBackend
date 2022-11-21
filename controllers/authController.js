@@ -102,4 +102,42 @@ module.exports = {
         },
 
 
+        async ingresoMedico(req, res, nect){
+            try{
+                const nombres = req.query.nombres
+                const numeroID = req.query.numeroID;
+
+                const data = await Auth.insertMed(nombres,numeroID);
+                
+                console.log(data);
+    
+                if  (!data){
+                    return res.status(401).json({
+                        success: false,
+                        message: 'Hubo un error en la base de datos',
+            
+                    });
+                }
+    
+                return res.status(201).json({
+                    success: true,
+                    message: 'Se ha registrado su informacion',
+                    data
+                });
+                
+            }catch(error){
+                console.log(`Error al obtener cotizaciones ${error}`);
+                return res.status(501).json({
+                    message: 'Hubo un error al registrar su información médica',
+                    error: error,
+                    success: false
+                })
+            }
+    
+    
+        },
+
+
+
+
 }

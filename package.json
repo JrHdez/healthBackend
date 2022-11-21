@@ -22,11 +22,15 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.8.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "pg-promise": "^10.11.1",
     "qrcode-terminal": "^0.12.0",
     "twilio": "^3.81.0",
     "whatsapp-web.js": "^1.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }

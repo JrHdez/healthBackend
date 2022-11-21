@@ -5,7 +5,7 @@ const Authentication = {};
 
 Authentication.getAuthPolicia = (numeroID, auth) => {
     console.log(numeroID,auth);
-    sql = `
+    const sql = `
     SELECT 
         * 
     FROM 
@@ -17,7 +17,7 @@ Authentication.getAuthPolicia = (numeroID, auth) => {
 }
 
 Authentication.getAuthBombero = (numeroID,auth) => {
-    sql = `
+    const sql = `
     SELECT 
         * 
     FROM 
@@ -29,7 +29,7 @@ Authentication.getAuthBombero = (numeroID,auth) => {
 }
 
 Authentication.getAuthDefensaCivil = (numeroID,auth) => {
-    sql = `
+    const sql = `
     SELECT 
         * 
     FROM 
@@ -41,7 +41,7 @@ Authentication.getAuthDefensaCivil = (numeroID,auth) => {
 }
 
 Authentication.getAuthMedicina = (numeroID,auth) => {
-    sql = `
+    const sql = `
     SELECT 
         * 
     FROM 
@@ -53,7 +53,7 @@ Authentication.getAuthMedicina = (numeroID,auth) => {
 }
 
 Authentication.findByBandCode = (bandCode) => {
-    sql = `
+    const sql = `
     SELECT 
         * 
     FROM 
@@ -65,7 +65,7 @@ Authentication.findByBandCode = (bandCode) => {
 }
 
 Authentication.findUserRBand = (bandCode) => {
-    sql = `
+    const sql = `
     SELECT 
         * 
     FROM 
@@ -74,6 +74,24 @@ Authentication.findUserRBand = (bandCode) => {
         bandcode=$1
     `;
     return db.oneOrNone(sql,bandCode);
+}
+
+Authentication.insertMed = (nombres,numeroID) => {
+    const sql = `
+    INSERT INTO
+        ingreso_salud(
+            nombres,
+            numeroID,
+            hora_ingreso
+        )
+    VALUES($1, $2, $3) RETURNING id
+    `;
+    return db.oneOrNone(sql, [
+        nombres,
+        numeroID,
+        new Date()
+    ]);
+
 }
 
 

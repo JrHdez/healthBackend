@@ -2,7 +2,7 @@ const QR = require('../models/qr');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const client = require('../whats-app/whatsapp');
+// const client = require('../whats-app/whatsapp');
 const accountSid = 'AC3af222142270c82efd77831c6772b863'; 
 const authToken = 'fe17acd033e313f5bfe40fa5e593c4ef'; 
 // const client = require('twilio')(accountSid, authToken);
@@ -42,18 +42,21 @@ module.exports = {
                 };
 
                 let telefonos = Object.values(contacts);
-                for(let i=0; i< telefonos.length; i++){
-                    if (telefonos[i] != null && telefonos[i] != ""){
-                        try{
-                            client.sendMessage(`57${telefonos[i]}@c.us`, `${mensajeEspanol}. Toca para mirar la ubicación:
-https://maps.google.com/?q=${latitude},${longitude}`);
-                        }catch(e){
-                            console.log('Error mandando mensaje whatsapp');
-                        }
 
-                    }
+                //REACTIVAR NOTIFICACIONES POR WHATSAPPPPOP
+
+//                 for(let i=0; i< telefonos.length; i++){
+//                     if (telefonos[i] != null && telefonos[i] != ""){
+//                         try{
+//                             client.sendMessage(`57${telefonos[i]}@c.us`, `${mensajeEspanol}. Toca para mirar la ubicación:
+// https://maps.google.com/?q=${latitude},${longitude}`);
+//                         }catch(e){
+//                             console.log('Error mandando mensaje whatsapp');
+//                         }
+
+//                     }
                     
-                  }
+//                   }
 
                    
 

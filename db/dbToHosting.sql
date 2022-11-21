@@ -95,6 +95,7 @@ CREATE TABLE users(
 	notificationID VARCHAR(255)  NULL UNIQUE,
 	password VARCHAR(255)  NULL,
 	session_token VARCHAR(255) NULL,
+	verificado BOOLEAN NOT NULL,
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL,
 	FOREIGN KEY (bandCode) REFERENCES bands(code) ON UPDATE CASCADE ON DELETE CASCADE
@@ -228,6 +229,26 @@ CREATE TABLE contactos(
 	FOREIGN KEY (id_usuario) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS personal_salud;
+CREATE TABLE personal_salud(
+	id BIGSERIAL PRIMARY KEY,
+	tipoID VARCHAR(80) NOT NULL,
+	numeroID VARCHAR(80) NOT NULL,
+    primer_nombre VARCHAR(255) NOT NULL,
+	primer_apellido VARCHAR(255) NOT NULL
+);
+
+
+COPY public.producto FROM 'C:\PSQL\cuidame\personal_medico.csv' DELIMITER ';' CSV HEADER;
+COPY public.personal_medico FROM '/home/junior_hernandeze/personal_medico.csv' DELIMITER ';' CSV HEADER;
+
+DROP TABLE IF EXISTS ingreso_salud;
+CREATE TABLE ingreso_salud(
+	id BIGSERIAL PRIMARY KEY,
+	nombre VARCHAR(80) NOT NULL,
+	numeroID VARCHAR(80) NOT NULL,
+	created_at TIMESTAMP(0) NOT NULL
+);	
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to stcolomb_junior;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public to stcolomb_junior;

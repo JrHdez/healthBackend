@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'); //Importar paquete
 const app = express();  //Inicializar nuestra app
 const http = require('http'); //Importar Http
@@ -13,6 +14,9 @@ const Keys = require('./config/keys');
 */
 const users = require('./routes/usersRoutes');
 // const wp = require('./whats-app/whatsapp');
+
+// if(process.env.NODE_ENV !== 'production')
+
 
 const port = process.env.PORT || 3000; //Definir puerto que escucha nuestro servidor
 app.use(logger('dev')); //Logger para desarrollo para debugar erroes

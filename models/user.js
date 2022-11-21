@@ -49,13 +49,26 @@ User.findByEmail = (email) => {
         numberID,
         phone,
         email,
-        password
+        password,
+        verificado
     FROM
         users
     WHERE
         email = $1    
     `;
     return db.oneOrNone(sql,email);
+}
+
+User.confirmEmail = (idUser) => {
+    const sql = `
+    UPDATE
+        users
+    SET
+        verificado = true
+    WHERE
+        id = $1
+    `
+    return db.none(sql,idUser);
 }
 
 User.create = (user) => {
@@ -75,10 +88,11 @@ User.create = (user) => {
             email,
             parentesco,
             password,
+            verificado,
             created_at,
             updated_at
         )
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id
     `;
     return db.oneOrNone(sql, [
         user.codeBand,
@@ -90,9 +104,22 @@ User.create = (user) => {
         user.email,
         user.parentesco,
         user.password,
+        false,
         new Date(),
         new Date()
     ]);
+}
+
+User.deleteUser = (user_email) => {
+
+    const sql = `
+    DELETE FROM 
+        users
+    WHERE
+        email = $1
+    `;
+    return db.none(sql,user_email);
+
 }
 
 User.createForm1 = (user) => {
@@ -362,7 +389,7 @@ User.updateContact = (info) => {
 User.findByCod = (cod) => {
     const sql = `
     SELECT
-        a_cargo_id, 
+    a_cargo_id, 
         pacientes.id, 
         nombre,
         apellido,
