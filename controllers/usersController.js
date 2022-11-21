@@ -236,7 +236,7 @@ module.exports = {
                 }
             );
 
-        const url = `http://localhost:3000/confirmation/${emailToken}`;
+        const url = `https://api.cuidame.tech/confirmation/${emailToken}`;
         await transporter.sendMail({
                         to: user.email,
                         subject: '¡Confirmación email Cuidame!',
