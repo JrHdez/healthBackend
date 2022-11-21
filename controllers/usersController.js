@@ -236,7 +236,7 @@ module.exports = {
                 }
             );
 
-        const url = `https://api.cuidame.tech/confirmation/${emailToken}`;
+        const url = `https://api.cuidame.tech/api/users/confirmation/${emailToken}`;
         await transporter.sendMail({
                         to: user.email,
                         subject: '¡Confirmación email Cuidame!',
