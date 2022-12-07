@@ -2,7 +2,7 @@ const QR = require('../models/qr');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-// const client = require('../whats-app/whatsapp');
+const client = require('../whats-app/whatsapp');
 const e = require('express');
 const utilidades = require('../utils/utilidades');
 

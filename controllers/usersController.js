@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
-// const transporter = require('../config/mailer');
+const transporter = require('../config/mailer');
 
 module.exports = {
     async getAll(req, res, next){
