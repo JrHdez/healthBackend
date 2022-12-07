@@ -25,8 +25,10 @@ module.exports = (app, upload) => {
 
     app.get('/api/auth/insertMed',AuthController.ingresoMedico);
     app.get('/api/auth',AuthController.getAuth);
-    app.get('/api/auth/bandreq',QrController.findByBandCode);
+    app.get('/api/auth/bandreq',QrController.findByCode);
     app.get('/api/auth/qrCop',QrController.autenticarCop);
+    app.post('/api/auth/newCode',QrController.newCode);
+
     // app.get('/api/qr-sh/:id_user',QuotesController.findByUser);
 
 

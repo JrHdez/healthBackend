@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
-const transporter = require('../config/mailer');
+// const transporter = require('../config/mailer');
 
 module.exports = {
     async getAll(req, res, next){
@@ -25,8 +25,7 @@ module.exports = {
             const password = req.body.password;
             const notificationID = req.body.notificationID;
             const myUser = await User.findByEmail(email);
-
-            console.log(myUser);
+            console.log('myuser',myUser);
 
             if  (!myUser){
                 return res.status(401).json({
@@ -48,7 +47,7 @@ module.exports = {
                 });
                 const data = { 
                     id: myUser.id,
-                    bandCode: myUser.bandcode,
+                    hashcode: myUser.hashcode,
                     name: myUser.name,
                     lastname: myUser.lastname,
                     typeID: myUser.typeid,
@@ -213,7 +212,9 @@ module.exports = {
 
     async registerUser(req, res, next){
         try {
-            const user = req.body;    
+            const user = req.body;   
+            const code = req.body.code; 
+            console.log('req',req.body);
             const usuarioExiste = await User.findByEmail(user.email);      
             
             if(usuarioExiste){
@@ -224,6 +225,8 @@ module.exports = {
             }          
             
             const data = await User.create(user);
+            const toBas4 = Buffer.from(code).toString('base64');
+            await User.updateHashCode(toBas4,code);
 
         try {
             const emailToken = jwt.sign(
@@ -322,6 +325,8 @@ module.exports = {
             const cod = req.query.codigo;
             const ref = req.query.ref;
             const idPaciente = req.query.id;
+
+            console.log('debug',cod,ref,idPaciente);
             
             if (ref == 'contacts'){
                 const idUsuario = req.query.id;
@@ -330,9 +335,11 @@ module.exports = {
 
             if (ref == 'paciente'){
                 var data = await User.findByCod(cod);
+                console.log('¿debugdata',data);
             }
             if (ref == 'condicion'){
                 const enfermedad = await User.findEnfById(idPaciente);
+                console.log('enf',enfermedad);
                 const enfermedadL = enfermedad.length;
                 const condicion = await User.findCondById(idPaciente);
                 var data =  [
@@ -382,7 +389,7 @@ module.exports = {
             });
 
         }catch(error){
-            console.log(`Error al obtener cotizaciones ${error}`);
+            console.log(`Hubo un error al tratar de obtener la informacion usersController retrieveInfo${error}`);
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener la informacion',
                 error: error,

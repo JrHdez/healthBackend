@@ -2,11 +2,23 @@ const db = require('../config/config');
 
 const Qr = {};
 
-Qr.findByBandCode = (bandCode) => {
+Qr.addQrCode = (code) => {
+    const sql = `
+        INSERT INTO
+            codes(
+                code,
+                created_at
+            )
+        VALUES($1, $2) RETURNING id
+    `;
+    return db.oneOrNone(sql, [code, new Date()])
+}
+
+Qr.findByCode = (code) => {
     const sql = `
         SELECT
             id,
-            bandCode,
+            hashcode,
             name,
             lastname,
             phone,
@@ -15,9 +27,10 @@ Qr.findByBandCode = (bandCode) => {
         FROM
             users
         WHERE
-            bandCode = $1
+            hashcode = $1
     `;
-    return db.oneOrNone(sql, bandCode);
+    console.log('sql',sql);
+    return db.oneOrNone(sql, code);
 }
 
 Qr.findContacts = (idUsuario) => {

@@ -52,28 +52,28 @@ Authentication.getAuthMedicina = (numeroID,auth) => {
     return db.oneOrNone(sql,[numeroID,auth]);
 }
 
-Authentication.findByBandCode = (bandCode) => {
+Authentication.findByCode = (code) => {
     const sql = `
     SELECT 
         * 
     FROM 
-        bands
+        codes
     WHERE
         code=$1
     `;
-    return db.oneOrNone(sql,bandCode);
+    return db.oneOrNone(sql,code);
 }
 
-Authentication.findUserRBand = (bandCode) => {
+Authentication.findUserBand = (code) => {
     const sql = `
     SELECT 
         * 
     FROM 
         users
     WHERE
-        bandcode=$1
+        hashcode=$1
     `;
-    return db.oneOrNone(sql,bandCode);
+    return db.oneOrNone(sql,code);
 }
 
 Authentication.insertMed = (nombres,numeroID) => {

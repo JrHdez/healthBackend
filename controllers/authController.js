@@ -39,7 +39,7 @@ module.exports = {
             });
             
         }catch(error){
-            console.log(`Error al obtener cotizaciones ${error}`);
+            console.log(`Error en authController getAuth ${error}`);
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener la autenticacion',
                 error: error,
@@ -54,22 +54,22 @@ module.exports = {
             
             const code = req.body.code;      
             const pin = req.body.pin;
-            const myBand = await Auth.findByBandCode(code);
+            const myBand = await Auth.findByCode(code);
 
             if  (!myBand){
                 return res.status(401).json({
                     success: false,
-                    message: 'Código o pin de la banda no es válido',
+                    message: 'No hemos podido identificar este codigo, por favor revisa e ingresa nuevamente',
         
                 });
             }
 
-            const userRband = await Auth.findUserRBand(code);
+            const userRband = await Auth.findUserBand(code);
 
             if (userRband){
                 return res.status(401).json({
                     success: false,
-                    message: 'Esta banda ya se encuentra en uso',
+                    message: 'Esta código ya se encuentra en uso',
         
                 });
             }
@@ -108,9 +108,7 @@ module.exports = {
                 const numeroID = req.query.numeroID;
 
                 const data = await Auth.insertMed(nombres,numeroID);
-                
-                console.log(data);
-    
+                    
                 if  (!data){
                     return res.status(401).json({
                         success: false,
@@ -126,7 +124,7 @@ module.exports = {
                 });
                 
             }catch(error){
-                console.log(`Error al obtener cotizaciones ${error}`);
+                console.log(`Hubo un error al registrar su información médica ${error}`);
                 return res.status(501).json({
                     message: 'Hubo un error al registrar su información médica',
                     error: error,

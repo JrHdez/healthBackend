@@ -1,3 +1,5 @@
-2022/11/24-15:17:08.394 e6b8 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2022/11/24-15:17:08.394 e6b8 Recovering log #14
-2022/11/24-15:17:08.395 e6b8 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\Local Storage\leveldb/000014.log 
+2022/12/01-23:00:17.688 4e74 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2022/12/01-23:00:17.688 4e74 Recovering log #14
+2022/12/01-23:00:17.689 4e74 Level-0 table #16: started
+2022/12/01-23:00:17.692 4e74 Level-0 table #16: 18465 bytes OK
+2022/12/01-23:00:17.694 4e74 Delete type=0 #14

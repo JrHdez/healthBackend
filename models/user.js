@@ -42,7 +42,7 @@ User.findByEmail = (email) => {
     const sql = `
     SELECT
         id,
-        bandCode,
+        hashcode,
         name,
         lastname,
         typeID,
@@ -79,7 +79,7 @@ User.create = (user) => {
     const sql = `
     INSERT INTO 
         users(
-            bandCode,
+            code,
             name,
             lastname,
             typeID,
@@ -95,7 +95,7 @@ User.create = (user) => {
     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id
     `;
     return db.oneOrNone(sql, [
-        user.codeBand,
+        user.code,
         user.name,
         user.lastname,
         user.typeID,
@@ -110,6 +110,18 @@ User.create = (user) => {
     ]);
 }
 
+User.updateHashCode = (hashcode, code) => {
+    const sql = `
+        UPDATE
+            users
+        SET 
+            hashcode = $1
+        WHERE
+            code = $2
+    `;
+    return db.none(sql,[hashcode, code])
+}
+
 User.deleteUser = (user_email) => {
 
     const sql = `
@@ -122,15 +134,12 @@ User.deleteUser = (user_email) => {
 
 }
 
+
 User.createForm1 = (user) => {
-
-    // const myPasswordHashed = crypto.createHash('md5').update(user.password).digest('hex');
-    // user.password = myPasswordHashed;
-
     const sql = `
     INSERT INTO 
         pacientes(
-            bandCode,
+            code,
             nombre,
             apellido,
             tipoID,
@@ -154,7 +163,7 @@ User.createForm1 = (user) => {
     `;
 
     return db.oneOrNone(sql, [
-        user.codPulsera,
+        user.code,
         user.nombres,
         user.apellidos,
         user.tipoID,
@@ -413,7 +422,7 @@ User.findByCod = (cod) => {
         pacientes
     LEFT JOIN users ON pacientes.a_cargo_id = users.id
     WHERE 
-        pacientes.bandcode = $1
+        pacientes.code = $1
         `;
     return db.manyOrNone(sql,cod);
 

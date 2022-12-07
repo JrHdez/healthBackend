@@ -1,0 +1,3 @@
+qrController -> // const client = require('../whats-app/whatsapp');
+usersController -> // const transporter = require('../config/mailer'); Para enviar email se crea un transporter y luego se llama, easy, ready to send emails me lo da el tranposrte
+
