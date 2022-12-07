@@ -2,16 +2,17 @@ const db = require('../config/config');
 
 const Qr = {};
 
-Qr.addQrCode = (code) => {
+Qr.addQrCode = (code,hashcode) => {
     const sql = `
         INSERT INTO
             codes(
                 code,
+                hashcode,
                 created_at
             )
-        VALUES($1, $2) RETURNING id
+        VALUES($1, $2, $3) RETURNING id
     `;
-    return db.oneOrNone(sql, [code, new Date()])
+    return db.oneOrNone(sql, [code, hashcode, new Date()])
 }
 
 Qr.findByCode = (code) => {

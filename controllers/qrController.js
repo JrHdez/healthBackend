@@ -113,7 +113,13 @@ https://maps.google.com/?q=${latitude},${longitude}`);
                 for (var i = 0; i < qty; i++) {
                     const code = utilidades.randomString(16);
                     codes.push(code)     
-                    const id = QR.addQrCode(code);
+                    let toBas4 = Buffer.from(code).toString('base64');
+                    const charToReplace = ['=','%','?','/','+']
+                    charToReplace.forEach((x,i) => {
+                        toBas4 = toBas4.replaceAll(x,'');
+                      });
+                    const id = QR.addQrCode(code,toBas4);
+                    
                   }
 
                 return res.status(201).json({
