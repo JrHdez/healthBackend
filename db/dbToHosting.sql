@@ -48,13 +48,7 @@ insert into dbMedicina values('1','Cristian','Hernandez','12355232','MG2131');
 
 
 -- CREATE USER stcolomb_junior-smartek WITH PASSWORD 'esmart2021health';
-DROP TABLE IF EXISTS codes CASCADE;
-CREATE TABLE codes(
-	id BIGSERIAL PRIMARY KEY,
-	code VARCHAR(100) NOT NULL UNIQUE,
-	hashcode VARCHAR(100) NOT NULL UNIQUE,
-	created_at TIMESTAMP(0) NOT NULL
-);
+
 
 INSERT INTO bands VALUES(1,'SHB001A','esmartb01A','2021-01-01','2021-01-01');
 INSERT INTO bands VALUES(2,'SHB002A','esmartb02A','2021-01-01','2021-01-01');
@@ -77,7 +71,13 @@ INSERT INTO bands VALUES(18,'SHB018A','esmartb18A','2021-01-01','2021-01-01');
 INSERT INTO bands VALUES(19,'SHB019A','esmartb19A','2021-01-01','2021-01-01');
 INSERT INTO bands VALUES(20,'SHB020A','esmartb20A','2021-01-01','2021-01-01');
 
-
+DROP TABLE IF EXISTS codes CASCADE;
+CREATE TABLE codes(
+	id BIGSERIAL PRIMARY KEY,
+	code VARCHAR(100) NOT NULL UNIQUE,
+	hashcode VARCHAR(100) NOT NULL UNIQUE,
+	created_at TIMESTAMP(0) NOT NULL
+);
 
 
 DROP TABLE IF EXISTS users CASCADE;
@@ -245,9 +245,9 @@ COPY public.personal_medico FROM '/home/junior_hernandeze/personal_medico.csv' D
 DROP TABLE IF EXISTS ingreso_salud;
 CREATE TABLE ingreso_salud(
 	id BIGSERIAL PRIMARY KEY,
-	nombre VARCHAR(80) NOT NULL,
+	nombres VARCHAR(80) NOT NULL,
 	numeroID VARCHAR(80) NOT NULL,
-	created_at TIMESTAMP(0) NOT NULL
+	hora_ingreso TIMESTAMP(0) NOT NULL
 );	
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to stcolomb_junior;

@@ -71,7 +71,7 @@ Authentication.findUserBand = (code) => {
     FROM 
         users
     WHERE
-        hashcode=$1
+        code=$1
     `;
     return db.oneOrNone(sql,code);
 }

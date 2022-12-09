@@ -225,7 +225,19 @@ module.exports = {
             }          
             
             const data = await User.create(user);
-            const toBas4 = Buffer.from(code).toString('base64');
+            const id = parseInt(data);
+            //Creamos un contactos por defecto
+            await User.createContact({
+                idUsuario: data.id, 
+                nombre1: user.name,
+                telefono1: user.phone
+            });
+
+            let toBas4 = Buffer.from(code).toString('base64');
+            const charToReplace = ['=','%','?','/','+']
+            charToReplace.forEach((x,i) => {
+                toBas4 = toBas4.replaceAll(x,'');
+              });
             await User.updateHashCode(toBas4,code);
 
         try {
@@ -299,7 +311,6 @@ module.exports = {
     async deleteUser(req, res, next){
         try {
             const email = req.body.email;
-            console.log(email);
 
             await User.deleteUser(email);
             // await Rol.create(data.id, 1); //Estableciedo rol por defecto (cliente)
@@ -428,7 +439,6 @@ module.exports = {
             }else if(form == 2){
                 await User.deleteInfo(Info.idPaciente,'enfermedades');
                 await User.deleteInfo(Info.idPaciente,'condicion');
-                console.log('Info condicion',Info);
                 for (const i in Info.enfermedades){
                     await User.createFormEnfermedad(Info.idPaciente,Info.enfermedades[i].enfermedad);
                 }

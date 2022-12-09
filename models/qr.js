@@ -30,7 +30,7 @@ Qr.findByCode = (code) => {
         WHERE
             hashcode = $1
     `;
-    console.log('sql',sql);
+
     return db.oneOrNone(sql, code);
 }
 

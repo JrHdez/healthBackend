@@ -23,11 +23,8 @@ module.exports = {
             // console.log('dataunde',data);
             // const contacts = await QR.findContacts(data.id);
             // console.log("contacts",contacts);
-
+            console.log('data',data);
             let contacts;
-
-
-
 
             if (data){
                 contacts = await QR.findContacts(data.id);
@@ -39,7 +36,7 @@ module.exports = {
                     mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu objeto: ${objeto}.`
                 }
 
-
+                    
 
                 let telefonos = Object.values(contacts);
 
