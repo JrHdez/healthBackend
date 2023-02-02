@@ -16,6 +16,10 @@ module.exports = (app, upload) => {
     app.get('/api/users/confirmation/:token', UsersController.verifyUserEmail);//Confirm email to be done  
     app.post('/api/users/deleteUser', UsersController.deleteUser);
     app.post('/api/users/registerContact', passport.authenticate('jwt', {session: false}), UsersController.registerContact);
+    app.post('/api/users/registerObject', passport.authenticate('jwt', {session: false}), UsersController.registerObject);
+    app.post('/api/users/deleteObject', UsersController.deleteObject);
+
+    
     
     app.post('/api/users/updateInfo', passport.authenticate('jwt', {session: false}), UsersController.updateInfo);
     app.get('/api/users/verification', UsersController.verifyUserEmail);

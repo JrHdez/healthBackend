@@ -210,6 +210,34 @@ module.exports = {
         }
     },
 
+    async registerObject(req, res, next){
+        try {
+            const info = req.body;
+
+            // const savedOBjects = await User.findContactsById(info.idUsuario);
+            if (true){
+                await User.createObject(info);
+                return res.status(201).json({
+                    success: true,
+                    message: 'Se ha guardado la información de objetos correctamente.',
+                });
+            }else{
+                await User.updateContact(contacts);
+                return res.status(201).json({
+                    success: true,
+                    message: 'Se ha actualizado la información de objetos correctamente.',
+                });
+            }
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con el registro de los contactos.',
+                error: error
+            });
+        }
+    },
+
     async registerUser(req, res, next){
         try {
             const user = req.body;   
@@ -331,14 +359,43 @@ module.exports = {
         }
     },
 
+    async deleteObject(req, res, next){
+        try {
+            const hashcode = req.body.hashcode;
+            const object = req.body.objeto;
+            console.log('conchita',hashcode,object);
+            await User.deleteObject(hashcode,object);
+            // await Rol.create(data.id, 1); //Estableciedo rol por defecto (cliente)
+            return res.status(201).json({
+                success: true,
+                message: 'Se ha eliminado su cuenta de usuario y su información.',
+       
+                
+            });
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con el procedimiento.',
+                error: error
+            });
+        }
+    },
+
     async retrieveInfo(req, res, nect){
         try{
-            const cod = req.query.codigo;
+            const cod = req.query.hashcode;
             const ref = req.query.ref;
             const idPaciente = req.query.id;
 
             console.log('debug',cod,ref,idPaciente);
             
+            if (ref == 'objetos'){
+                const hashcode = req.query.hashcode;
+                var data = await User.findObjectsByHashcode(hashcode);
+            }
+
             if (ref == 'contacts'){
                 const idUsuario = req.query.id;
                 var data = await User.findContactsById(idUsuario);

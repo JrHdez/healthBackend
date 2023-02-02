@@ -145,7 +145,7 @@ User.createForm1 = (user) => {
             tipoID,
             numeroID,
             telefono,
-            edad,
+            fecha_nacimiento,
             genero,
             ciudad,
             departamento,
@@ -169,7 +169,7 @@ User.createForm1 = (user) => {
         user.tipoID,
         user.numeroID,
         user.telefono,
-        user.edad,
+        user.fechaNacimiento,
         user.genero,
         user.ciudad,
         user.departamento,
@@ -336,6 +336,42 @@ User.createForm5 = (info) => {
     ]);
 }
 
+User.createObject = (info) => {
+    const sql = `
+    INSERT INTO 
+         pertenencias(
+            id_user,
+            hashcode,
+            objeto,
+            descripcion,
+            created_at
+        )   
+    VALUES($1, $2, $3, $4, $5) RETURNING id
+    `;
+
+    return db.oneOrNone(sql, [
+        info.idUsuario,
+        info.hashcode,
+        info.nombreObjeto,
+        info.descObjeto,
+        new Date()
+    ]);
+}
+
+User.deleteObject = (hashcode,objecto) => {
+    sql = `
+    DELETE FROM
+        pertenencias
+    WHERE
+        hashcode = $1 AND objeto = $2
+    `;
+
+    return db.none(sql,[
+        hashcode,
+        objecto
+    ]);
+}
+
 User.createContact = (info) => {
     const sql = `
     INSERT INTO 
@@ -405,7 +441,7 @@ User.findByCod = (cod) => {
         tipoid as "Tipo de identificación",
         numeroid as "Número de identificación",
         telefono,
-        edad,
+        fecha_nacimiento,
         genero,
         direccion,
         ciudad,
@@ -458,6 +494,20 @@ User.findContactsById = (id_usuario) => {
         `;
 
     return db.oneOrNone(sql,id_usuario);
+}
+
+User.findObjectsByHashcode = (hashcode) => {
+    const sql = `
+    SELECT 
+		objeto,
+        descripcion
+    FROM 
+        pertenencias 
+    WHERE 
+        hashcode = $1
+        `;
+
+    return db.manyOrNone(sql,hashcode);
 }
 
 
@@ -646,7 +696,7 @@ User.updatePaciente = info => {
         info.tipoID,
         info.numeroID,
         info.telefono,
-        info.edad,
+        info.fecha_nacimiento,
         info.genero,
         info.ciudad,
         info.departamento,

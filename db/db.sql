@@ -223,7 +223,7 @@ CREATE TABLE contactos(
 			pac.id,
 			nombre,
 			apellido,
-			edad,
+			fecha_nacimiento,
 			genero AS Género,
 			ciudad,
 			departamento,

@@ -101,12 +101,23 @@ CREATE TABLE users(
 	FOREIGN KEY (code) REFERENCES codes(code) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- Update users SET verificado = true WHERE id=1;
+
 -- GRANT ALL PRIVILEGES ON TABLE users TO stcolomb_junior-smartek;
 -- GRANT ALL PRIVILEGES ON TABLE users TO postgres;
 -- INSERT INTO users VALUES(100,'SHB001A','Javier','Perez','CC','123123123','#01311129', 'javi','Padre','12345','token','2020-12-12','2020-12-12');
 -- INSERT INTO users VALUES(200,'SHB002A','Javier','Perez','CC','123123113','#01112129', 'javiER','Hijo','12345','token','2020-12-12','2020-12-12');
 
-
+DROP TABLE IF EXISTS pertenencias;
+CREATE TABLE pertenencias(
+	id BIGSERIAL PRIMARY KEY,
+	id_user BIGINT NOT NULL,
+	hashcode VARCHAR(80) NOT NULL,
+	objeto VARCHAR(50) NOT NULL,
+	descripcion VARCHAR(500) NULL,
+	created_at TIMESTAMP(0) NULL,
+	FOREIGN KEY (id_user) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);	
 
 
 DROP TABLE IF EXISTS pacientes CASCADE;
@@ -118,7 +129,7 @@ CREATE TABLE pacientes(
 	tipoID VARCHAR(80) NOT NULL,
 	numeroID VARCHAR(80) NOT NULL,
 	telefono VARCHAR(30) NOT NULL,
-	edad VARCHAR(20) NULL,
+	fecha_nacimiento DATE NULL,
 	genero VARCHAR(30) NOT NULL,
 	ciudad VARCHAR(50) NOT NULL,
 	departamento VARCHAR(50) NOT NULL,
@@ -128,7 +139,7 @@ CREATE TABLE pacientes(
 	prepagada VARCHAR(50) NULL,
 	arl VARCHAR(50) NULL,
 	seguro_funerario VARCHAR(50) NULL,
-	a_cargo_id BIGINT NULL,
+	a_cargo_id BIGINT NOT NULL,
 	image VARCHAR(255) NULL,
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL,
@@ -228,6 +239,11 @@ CREATE TABLE contactos(
 	updated_at TIMESTAMP(0) NOT NULL,
 	FOREIGN KEY (id_usuario) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+
+
+
+
 
 DROP TABLE IF EXISTS personal_salud;
 CREATE TABLE personal_salud(
