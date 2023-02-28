@@ -336,6 +336,28 @@ User.createForm5 = (info) => {
     ]);
 }
 
+User.createFormVacunas = (info) => {
+
+
+    const sql = `
+    INSERT INTO 
+         vacunas(
+            id_paciente,
+            vacuna,
+            created_at,
+            updated_at
+        )   
+    VALUES($1, $2, $3, $4)
+    `;
+
+    return db.oneOrNone(sql, [
+        info.idPaciente,
+        info.vacuna,
+        new Date(),
+        new Date()
+    ]);
+}
+
 User.createObject = (info) => {
     const sql = `
     INSERT INTO 
@@ -600,6 +622,18 @@ User.findAlerById = (id_paciente) => {
         descripcion
     FROM 
         alergias 
+    WHERE 
+        id_paciente = $1
+        `;
+    return db.manyOrNone(sql,id_paciente);
+}
+
+User.findVacunasById = (id_paciente) => {
+    const sql = `
+    SELECT 
+        vacuna
+    FROM 
+        vacunas
     WHERE 
         id_paciente = $1
         `;

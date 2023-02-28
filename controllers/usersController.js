@@ -170,6 +170,20 @@ module.exports = {
                     message: 'El formulario 5 (alergias) se realizó correctamente.',
                           
                 });
+            }else if (form == 7){
+                const vacunas = Info.vacunas;
+                vacunas.forEach(async element => {
+                    await User.createFormVacunas({
+                        idPaciente: Info.idPaciente,
+                        ...element,
+                    });
+                });
+                
+                return res.status(201).json({
+                    success: true,
+                    message: 'El formulario 7 (vacunas) se realizó correctamente.',
+                          
+                });
             }
         
         } catch (error) {
@@ -442,10 +456,14 @@ module.exports = {
                 ];
             }
 
+            if (ref == 'vacunas'){
+                var data = await User.findVacunasById(idPaciente);
+            }
+
             if  (data.length == 0){
                 return res.status(401).json({
-                    success: false,
-                    message: 'Error al traer la informacion (no encontrada)',
+                    success: true,
+                    message: 'notFound',
         
                 });
             }
@@ -566,6 +584,21 @@ module.exports = {
                 return res.status(201).json({
                     success: true,
                     // message: 'El formulario 5 (alergias) se actualizó correctamente.',
+                    message: 'Proceso exitoso. Los cambios se veran reflejados al iniciar sesión.'
+                           
+                });
+            }else if (form == 7){
+                await User.deleteInfo(Info.idPaciente,'vacunas');
+                const vacunas = Info.vacunas;;
+                vacunas.forEach(async element => {
+                    await User.createFormVacunas({
+                        idPaciente: Info.idPaciente,
+                        ...element,
+                    });
+                });
+                return res.status(201).json({
+                    success: true,
+                    message: 'El formulario (vacunas) se actualizó correctamente.',
                     message: 'Proceso exitoso. Los cambios se veran reflejados al iniciar sesión.'
                            
                 });
