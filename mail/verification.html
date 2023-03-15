@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuidame</title>
+
+  <style type="text/css">
+    body{
+      margin: 50;
+    }
+    h1{
+    text-align: center;
+    color: #4472c4;
+    }
+    #logo{
+        display: block;
+        width: 140px;
+        margin-left: auto;
+        margin-right: auto;
+        /* margin: 10px auto 10px auto; */
+}
+  </style>  
+</head>
+
+<body>
+  <img id='logo' src="cid:logo_cuidame">
+  <h1>¡Bienvenido a Cuidame App! {{username}}</h1>
+  <p>Hola {{username}}, ¡Gracias por adquirir nuestros servicios!, por favor para confirmar tu email haz click en el siguiente enlace: <a href="{{urlToken}}">{{urlToken}}</a><br><p>Este enlace expira pasadas 24 horas, en ese caso por favor inicie sesión para recibir un nuevo correo de verificación.</p>
+</body>
+<script type="module" src="verification.js"></script>
+</html>

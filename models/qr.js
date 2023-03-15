@@ -15,6 +15,18 @@ Qr.addQrCode = (code,hashcode) => {
     return db.oneOrNone(sql, [code, hashcode, new Date()])
 }
 
+Qr.findPacientByCode = (code) => {
+    const sql = `
+        SELECT
+            nombre
+        FROM
+            pacientes
+        WHERE
+            code=$1
+    `;
+    return db.oneOrNone(sql, code);
+}
+
 Qr.findByCode = (code) => {
     const sql = `
         SELECT

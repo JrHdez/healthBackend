@@ -1,14 +1,11 @@
-2023/02/27-18:06:48.041 8388 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/02/27-18:06:48.050 8388 Recovering log #2564
-2023/02/27-18:06:48.053 8388 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/002564.log 
-2023/02/27-18:06:48.054 8388 Delete type=2 #2563
-2023/02/27-18:06:48.054 8388 Delete type=2 #2565
-2023/02/27-18:06:48.136 8388 Level-0 table #2569: started
-2023/02/27-18:06:48.139 8388 Level-0 table #2569: 7789 bytes OK
-2023/02/27-18:06:48.141 8388 Delete type=0 #2564
-2023/02/27-18:06:48.141 8388 Manual compaction at level-0 from '\x00\x9f\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xa0\x00\x00\x00' @ 0 : 0; will stop at '\x00\xa0\x00\x00\x05' @ 8452589 : 1
-2023/02/27-18:06:48.141 8388 Compacting 1@0 + 1@1 files
-2023/02/27-18:06:48.148 8388 Generated table #2570@0: 1809 keys, 15457 bytes
-2023/02/27-18:06:48.148 8388 Compacted 1@0 + 1@1 files => 15457 bytes
-2023/02/27-18:06:48.149 8388 compacted to: files[ 0 1 1 0 0 0 0 ]
-2023/02/27-18:06:48.149 8388 Manual compaction at level-0 from '\x00\xa0\x00\x00\x05' @ 8452589 : 1 .. '\x00\xa0\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/03/15-09:50:53.816 4de8 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/03/15-09:50:53.826 4de8 Recovering log #2728
+2023/03/15-09:50:53.853 4de8 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/002728.log 
+2023/03/15-09:51:31.738 48d4 Level-0 table #2734: started
+2023/03/15-09:51:31.840 48d4 Level-0 table #2734: 1103089 bytes OK
+2023/03/15-09:51:31.843 48d4 Delete type=0 #2728
+2023/03/15-09:51:31.872 d6c Compacting 1@1 + 2@2 files
+2023/03/15-09:51:32.183 d6c Generated table #2735@1: 52789 keys, 2221363 bytes
+2023/03/15-09:51:32.281 d6c Generated table #2736@1: 17398 keys, 756859 bytes
+2023/03/15-09:51:32.281 d6c Compacted 1@1 + 2@2 files => 2978222 bytes
+2023/03/15-09:51:32.282 d6c compacted to: files[ 0 0 2 0 0 0 0 ]

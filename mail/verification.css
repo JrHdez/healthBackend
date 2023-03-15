@@ -1,0 +1,12 @@
+h1{
+    text-align: center;
+    color: #4472c4;
+}
+
+#logo{
+    display: block;
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin: 10px auto 10px auto; */
+}

@@ -13,6 +13,8 @@ module.exports = (app, upload) => {
     app.post('/api/users/registerForm', passport.authenticate('jwt', {session: false}),UsersController.registerForm);
     app.get('/api/users/retrieve', UsersController.retrieveInfo);
     app.post('/api/users/registerUser', UsersController.registerUser);
+    app.post('/api/users/resendEmail',  passport.authenticate('jwt', {session: false}), UsersController.resendEmail);
+
     app.get('/api/users/confirmation/:token', UsersController.verifyUserEmail);//Confirm email to be done  
     app.post('/api/users/deleteUser', UsersController.deleteUser);
     app.post('/api/users/registerContact', passport.authenticate('jwt', {session: false}), UsersController.registerContact);
@@ -22,7 +24,7 @@ module.exports = (app, upload) => {
     
     
     app.post('/api/users/updateInfo', passport.authenticate('jwt', {session: false}), UsersController.updateInfo);
-    app.get('/api/users/verification', UsersController.verifyUserEmail);
+    // app.get('/api/users/verification', UsersController.verifyUserEmail);
 
     app.post('/api/users/login',UsersController.login);
     app.post('/api/users/bandAuth',AuthController.bandAuth);
@@ -30,6 +32,7 @@ module.exports = (app, upload) => {
     app.get('/api/auth/insertMed',AuthController.ingresoMedico);
     app.get('/api/auth',AuthController.getAuth);
     app.get('/api/auth/bandreq',QrController.findByCode);
+    app.get('/api/auth/sendNot',QrController.sendNotification);
     app.get('/api/auth/qrCop',QrController.autenticarCop);
     app.post('/api/auth/newCode',QrController.newCode);
 

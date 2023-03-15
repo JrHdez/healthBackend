@@ -4,6 +4,11 @@ const { oneOrNone } = require('../config/config');
 
 const User = {};
 
+//evnair emails
+const transporter = require('../config/mailer');
+var handlebars = require('handlebars');
+var fs = require('fs');
+
 User.getAll = () => {
     const sql = `
     SELECT 
@@ -743,6 +748,46 @@ User.updatePaciente = info => {
         new Date(),
         info.idPaciente
     ]);
+}
+
+User.sendEmail = async info => {
+    let htmlToSend;
+
+    try {
+        const html = fs.readFileSync('mail/verification.html', 'utf8');
+
+        var template = handlebars.compile(html);
+        var replacements = {
+            username: info.user.name,
+            urlToken: info.urlToken
+        };
+        
+        htmlToSend = template(replacements);
+
+        await transporter.sendMail({
+            to: info.user.email,
+            subject: '¡Confirmación email Cuidame!',
+            html: htmlToSend,
+            attachments: [
+                {
+                    filename: 'logo_cuidame.png',
+                    path: 'mail/assets/logo_cuidame.png',
+                    cid: 'logo_cuidame'
+                }
+            ]
+        
+            // html: `Hola ${user.name} Gracias por adquserruirir nuestros servicios, por favor para confirmar tu email haz click en el siguiente enlace: <a href="${url}">${url}</a><br><p>Este enlace expira pasadas 24 horas, en ese caso por favor inicie sesión para recibir un nuevo correo de verificación.</p>`,
+        });
+        return true;
+
+      } catch (err) {
+        console.error(err);
+        return false;
+      }
+
+
+
+
 }
 
 

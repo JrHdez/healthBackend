@@ -1,4 +1,0 @@
-[0227/180644.454:ERROR:backend_impl.cc(1041)] Critical error found -8
-[0227/180644.455:ERROR:entry_impl.cc(1076)] No file for c1030032
-[0227/180644.455:WARNING:storage_block-inl.h(147)] Failed data load.
-[0227/180648.130:INFO:CONSOLE(7)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/vendor1~app.0c8e960e5dfd7020f562.js (7)

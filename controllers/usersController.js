@@ -1,7 +1,9 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
-const transporter = require('../config/mailer');
+
+
+
 
 module.exports = {
     async getAll(req, res, next){
@@ -30,13 +32,7 @@ module.exports = {
             if  (!myUser){
                 return res.status(401).json({
                     success: false,
-                    message: 'El usuario no fue encontrado',
-        
-                });
-            }else if (!myUser.verificado){
-                return res.status(401).json({
-                    success: false,
-                    message: 'Por favor revisa tu bandeja de entrada para verificar tu email.',
+                    message: 'Usuario y/o contraseña no reconocidos',//Usuario no encontrado
         
                 });
             }
@@ -58,6 +54,13 @@ module.exports = {
                     // roles: myUser.roles
                 }
  
+                if (!myUser.verificado){
+                    return res.status(401).json({
+                        success: true,
+                        message: 'emailnoverificado',
+                        data
+                    });
+                }
 
                 await User.updateToken(myUser.id, `JWT ${token}`);
                 await User.updateNotificationID(myUser.id, notificationID);
@@ -73,7 +76,7 @@ module.exports = {
             else{
                 return res.status(401).json({
                     success: false,
-                    message: 'La contraseña es incorrecta',
+                    message: 'Usuario y/o contraseña no reconocidos', //La contraseña es incorrecta
                     data: {}
                 });
             } 
@@ -297,7 +300,7 @@ module.exports = {
         await transporter.sendMail({
                         to: user.email,
                         subject: '¡Confirmación email Cuidame!',
-                        html: `Hola ${user.name} Gracias por adquirir nuestros servicios, por favor para confirmar tu email haz click en el siguiente enlace: <a href="${url}">${url}</a>`,
+                        html: `Hola ${user.name} Gracias por adquirir nuestros servicios, por favor para confirmar tu email haz click en el siguiente enlace: <a href="${url}">${url}</a><br><p>Este enlace expira pasadas 24 horas, en ese caso por favor inicie sesión para recibir un nuevo correo de verificación.</p>`,
         });
       } catch (e) {
         console.log(e);
@@ -350,29 +353,7 @@ module.exports = {
         }
     }, 
 
-    async deleteUser(req, res, next){
-        try {
-            const email = req.body.email;
-
-            await User.deleteUser(email);
-            // await Rol.create(data.id, 1); //Estableciedo rol por defecto (cliente)
-            return res.status(201).json({
-                success: true,
-                message: 'Se ha eliminado su cuenta de usuario y su información.',
-       
-                
-            });
-
-        } catch (error) {
-            console.log(`Error: ${error}`);
-            return res.status(501).json({
-                success: false,
-                message: 'Hubo un error con el procedimiento.',
-                error: error
-            });
-        }
-    },
-
+    
     async deleteObject(req, res, next){
         try {
             const hashcode = req.body.hashcode;
@@ -396,6 +377,30 @@ module.exports = {
             });
         }
     },
+
+    async deleteUser(req, res, next){
+        try {
+            const email = req.body.email;
+
+            await User.deleteUser(email);
+            // await Rol.create(data.id, 1); //Estableciedo rol por defecto (cliente)
+            return res.status(201).json({
+                success: true,
+                message: 'Se ha eliminado su cuenta de usuario y su información.',
+       
+                
+            });
+
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con el procedimiento.',
+                error: error
+            });
+        }
+    },
+
 
     async retrieveInfo(req, res, nect){
         try{
@@ -598,7 +603,6 @@ module.exports = {
                 });
                 return res.status(201).json({
                     success: true,
-                    message: 'El formulario (vacunas) se actualizó correctamente.',
                     message: 'Proceso exitoso. Los cambios se veran reflejados al iniciar sesión.'
                            
                 });
@@ -611,10 +615,53 @@ module.exports = {
                     error: error
                 });
             }
+    },
+
+
+
+    async resendEmail(req, res, next){
+        const user = req.body;    
+        
+        try {
+            const emailToken = jwt.sign(
+                {
+                    user: user.id
+                },
+                keys.emailSecret,
+                {
+                    expiresIn: '1d'
+                }
+            );
+                
+        const infoEmail = {
+            user: user,
+            urlToken: `https://api.cuidame.tech/api/users/confirmation/${emailToken}`
+        }
+    
+        const correoEnviado = User.sendEmail(infoEmail);
+
+        
+        if(correoEnviado){
+            return res.status(201).json({
+                success: true,
+                message: 'Se reenvió el correo correctamente'
+                       
+            });
+        }else{
+            throw 'Error enviendo correo';
+        }
+      } catch (e) {
+        console.log(e);
+        return res.status(501).json({
+            success: false,
+            message: 'Hubo un error con el envío del correo',
+            error: e
+        });
+      }
     }
 
-    
 
+   
     
 
 }
