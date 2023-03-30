@@ -463,7 +463,7 @@ User.findByCod = (cod) => {
     SELECT
     a_cargo_id, 
         pacientes.id, 
-        nombre as "Nombre del paciente",
+        nombre as "Nombre",
         apellido as "Apellido del paciente",
         tipoid as "Tipo de identificación",
         numeroid as "Número de identificación",
