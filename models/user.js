@@ -467,10 +467,10 @@ User.findByCod = (cod) => {
         apellido as "Apellido del paciente",
         tipoid as "Tipo de identificación",
         numeroid as "Número de identificación",
-        telefono,
+        telefono as "Teléfono",
         fecha_nacimiento,
-        genero,
-        direccion,
+        genero as "Género",
+        direccion as "Dirección",
         ciudad,
         departamento,
         rh,
@@ -478,9 +478,9 @@ User.findByCod = (cod) => {
         prepagada,
         arl,
         seguro_funerario as "Seguro funerario",
-        name as "Nombre del pariente",
+        name as "Nombre del contacto",
         parentesco,
-        phone as "Teléfono de pariente"
+        phone as "Teléfono del contacto"
     FROM 
         pacientes
     LEFT JOIN users ON pacientes.a_cargo_id = users.id
