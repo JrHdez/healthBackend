@@ -16,13 +16,8 @@ module.exports = {
 
         try{
             const code_request = req.query.code_request;
-            // const latitude = req.query.latitude;
-            // const longitude = req.query.longitude;
-            // const objeto = req.query.objeto;
             const data = await QR.findPacientByCode(code_request);
-            // console.log('dataunde',data);
-            // const contacts = await QR.findContacts(data.id);
-            // console.log("contacts",contacts);
+
             console.log('data',data);
             let contacts;
 
@@ -32,56 +27,7 @@ module.exports = {
                     success: true,
                     data: data
                 });
-//                 contacts = await QR.findContacts(data.id);
-//                 // console.log("contacts",contacts);
-//                 let mensajeEspanol = `${data.name}, el código QR ha sido escaneado`;
-//                 let mensajeIngles = `${data.name}, the QR code has been scanned`;
-//                 console.log('objeto',objeto);
-//                 if (objeto != ''){
-//                     mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu objeto: ${objeto}.`
-//                 }
 
-                    
-
-//                 let telefonos = Object.values(contacts);
-
-//                 //NOTIFICACIONES POR WHATSAPPPPOP
-
-//                 for(let i=0; i< telefonos.length; i++){
-//                     if (telefonos[i] != null && telefonos[i] != ""){
-//                         try{
-//                             client.sendMessage(`57${telefonos[i]}@c.us`, `${mensajeEspanol}. Toca para mirar la ubicación:
-// https://maps.google.com/?q=${latitude},${longitude}`);
-//                         }catch(e){
-//                             console.log('Error mandando mensaje whatsapp');
-//                         }
-
-//                     }
-                    
-//                   }
-
-//                 const notification = {
-//                     "app_id": "d972c946-2ec3-48b7-bf2b-cc89f84320db",
-//                     "data": {"userId": "PostMan1234"},
-//                     "contents": {"en": `${mensajeIngles}. Tap to see location`, "es": `${mensajeEspanol}. Toca para mirar la ubicación`},
-//                     "heading": {"en": "Alerta", "es": "Este es el título"},
-//                     "include_player_ids": [`${data.notificationid}`],
-//                     "url": `https://maps.google.com/?q=${latitude},${longitude}`
-//                 };
-
-//                 // NOTIFICACION TODO: DESCOMENTAR
-//                 axios.post("https://onesignal.com/api/v1/notifications",notification,{
-//                     headers: {
-//                         'Content-type': 'application/json',
-//                         'Authorization': 'Basic MzliM2VmN2EtNDBjNy00ZjY1LTlhYmQtYjNjOTM5MTU0YThh'
-//                     }
-//                 }).then(response => console.log("response")).catch(error => console.log('Axios error mandando notificacion android by onesignal'));
-
-//                 return res.status(201).json({
-//                     message: 'Se ha identificado el código',
-//                     success: true,
-//                     data: data
-//                 });
             }else{
                 return res.status(401).json({
                     message: 'No se encontraron registros con este código QR',
@@ -105,17 +51,23 @@ module.exports = {
         const latitude = req.query.latitude;
         const longitude = req.query.longitude;
         const objeto = req.query.objeto;
+        const mascota = req.query.mascota;
         const data = await QR.findByCode(code_request);
 
         let contacts;
         if (data){
             contacts = await QR.findContacts(data.id);
             // console.log("contacts",contacts);
-            let mensajeEspanol = `${data.name}, el código QR ha sido escaneado`;
-            let mensajeIngles = `${data.name}, the QR code has been scanned`;
+            let mensajeEspanol = '';
+            let mensajeIngles = '';
             console.log('objeto',objeto);
             if (objeto != ''){
-                mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu objeto: ${objeto}.`
+                mensajeEspanol = `${data.name}, tú código QR ha sido escaneado en tu objeto: ${objeto}.`;
+            }else if(mascota != ''){
+                mensajeEspanol = `${data.name}, tú código QR en tu mascota ${mascota} ha sido escaneado!`;
+            }else{
+                mensajeEspanol = `${data.name}, el código QR ha sido escaneado`;
+                mensajeIngles = `${data.name}, the QR code has been scanned`;
             }
 
                 

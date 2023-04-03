@@ -19,6 +19,7 @@ module.exports = (app, upload) => {
     app.post('/api/users/deleteUser', UsersController.deleteUser);
     app.post('/api/users/registerContact', passport.authenticate('jwt', {session: false}), UsersController.registerContact);
     app.post('/api/users/registerObject', passport.authenticate('jwt', {session: false}), UsersController.registerObject);
+    app.post('/api/users/registerMascota', passport.authenticate('jwt', {session: false}), UsersController.registerMascota);
     app.post('/api/users/deleteObject', UsersController.deleteObject);
 
     

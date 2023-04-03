@@ -363,6 +363,33 @@ User.createFormVacunas = (info) => {
     ]);
 }
 
+User.createMascota = (info) => {
+
+    const sql = `
+    INSERT INTO 
+         mascotas(
+            id_usuario,
+            hashcode,
+            nombre,
+            especie,
+            raza,
+            descripcion,
+            created_at
+        )   
+    VALUES($1, $2, $3, $4, $5, $6, $7)
+    `;
+
+    return db.oneOrNone(sql, [
+        info.idUsuario,
+        info.hashcode,
+        info.nombre,
+        info.especie,
+        info.raza,
+        info.descripcion,
+        new Date()
+    ]);
+}
+
 User.createObject = (info) => {
     const sql = `
     INSERT INTO 
@@ -523,6 +550,19 @@ User.findContactsById = (id_usuario) => {
     return db.oneOrNone(sql,id_usuario);
 }
 
+User.findMascotaById = (id_usuario) => {
+    const sql = `
+    SELECT
+		*
+    FROM 
+        mascotas 
+    WHERE 
+        id_usuario = $1
+        `;
+
+    return db.oneOrNone(sql,id_usuario);
+}
+
 User.findObjectsByHashcode = (hashcode) => {
     const sql = `
     SELECT 
@@ -535,6 +575,22 @@ User.findObjectsByHashcode = (hashcode) => {
         `;
 
     return db.manyOrNone(sql,hashcode);
+}
+
+User.findMascotaByHashcode = (hashcode) => {
+    const sql = `
+    SELECT 
+		nombre,
+        especie,
+        raza,
+        descripcion
+    FROM 
+        mascotas 
+    WHERE 
+        hashcode = $1
+        `;
+
+    return db.oneOrNone(sql,hashcode);
 }
 
 
@@ -644,6 +700,7 @@ User.findVacunasById = (id_paciente) => {
         `;
     return db.manyOrNone(sql,id_paciente);
 }
+
 
 User.updateToken = (id, token) => {
     const sql = `

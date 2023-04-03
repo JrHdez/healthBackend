@@ -1,25 +1,12 @@
-2023/03/14-10:38:14.371 f50 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/03/14-10:38:14.387 f50 Recovering log #2719
-2023/03/14-10:38:14.418 f50 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/002719.log 
-2023/03/14-10:38:35.137 7ed0 Level-0 table #2725: started
-2023/03/14-10:38:35.170 7ed0 Level-0 table #2725: 1101715 bytes OK
-2023/03/14-10:38:35.173 7ed0 Delete type=0 #2719
-2023/03/14-10:38:35.183 7ed0 Compacting 1@1 + 2@2 files
-2023/03/14-10:38:35.286 7ed0 Generated table #2726@1: 48092 keys, 2207739 bytes
-2023/03/14-10:38:35.316 7ed0 Generated table #2727@1: 17291 keys, 650164 bytes
-2023/03/14-10:38:35.316 7ed0 Compacted 1@1 + 2@2 files => 2857903 bytes
-2023/03/14-10:38:35.317 7ed0 compacted to: files[ 0 0 2 0 0 0 0 ]
-2023/03/14-10:38:35.317 7ed0 Delete type=2 #2721
-2023/03/14-10:38:35.317 7ed0 Delete type=2 #2722
-2023/03/14-10:38:35.317 7ed0 Delete type=2 #2725
-2023/03/14-22:05:43.330 37a0 Level-0 table #2729: started
-2023/03/14-22:05:43.398 37a0 Level-0 table #2729: 1156486 bytes OK
-2023/03/14-22:05:43.402 37a0 Delete type=0 #2724
-2023/03/14-22:05:56.090 37a0 Compacting 1@1 + 2@2 files
-2023/03/14-22:05:56.590 37a0 Generated table #2730@1: 49500 keys, 2213128 bytes
-2023/03/14-22:05:56.668 37a0 Generated table #2731@1: 16358 keys, 516972 bytes
-2023/03/14-22:05:56.668 37a0 Compacted 1@1 + 2@2 files => 2730100 bytes
-2023/03/14-22:05:56.672 37a0 compacted to: files[ 0 0 2 0 0 0 0 ]
-2023/03/14-22:05:56.673 37a0 Delete type=2 #2726
-2023/03/14-22:05:56.674 37a0 Delete type=2 #2727
-2023/03/14-22:05:56.674 37a0 Delete type=2 #2729
+2023/04/03-15:44:20.535 5fc4 Reusing MANIFEST C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/04/03-15:44:20.536 5fc4 Recovering log #3228
+2023/04/03-15:44:20.606 5fc4 Reusing old log C:\Users\crist\Documents\ionicProjects\smartHealth\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/003228.log 
+2023/04/03-15:44:39.762 155c Level-0 table #3235: started
+2023/04/03-15:44:39.798 155c Level-0 table #3235: 991868 bytes OK
+2023/04/03-15:44:39.799 155c Delete type=0 #3228
+2023/04/03-15:44:39.832 155c Compacting 1@1 + 3@2 files
+2023/04/03-15:44:39.977 155c Generated table #3236@1: 61790 keys, 2246883 bytes
+2023/04/03-15:44:40.063 155c Generated table #3237@1: 27007 keys, 2185130 bytes
+2023/04/03-15:44:40.134 155c Generated table #3238@1: 38738 keys, 852274 bytes
+2023/04/03-15:44:40.134 155c Compacted 1@1 + 3@2 files => 5284287 bytes
+2023/04/03-15:44:40.141 155c compacted to: files[ 0 0 3 0 0 0 0 ]

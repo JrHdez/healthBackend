@@ -255,6 +255,37 @@ module.exports = {
         }
     },
 
+    async registerMascota(req, res, next){
+        try {
+            const info = req.body;
+            
+            const existeMascota = await User.findMascotaById(info.idUsuario);
+
+            if(existeMascota){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Ya se encuentra una mascota registrada'
+    
+                });
+            }
+
+            await User.createMascota(info);
+            return res.status(201).json({
+                success: true,
+                message: 'Se ha guardado la información de mascotas correctamente.',
+            });
+
+            
+        } catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con el registro de los contactos.',
+                error: error
+            });
+        }
+    },
+
     async registerUser(req, res, next){
         try {
             const user = req.body;   
@@ -415,6 +446,11 @@ module.exports = {
                 var data = await User.findObjectsByHashcode(hashcode);
             }
 
+            if (ref == 'mascota'){
+                const hashcode = req.query.hashcode;
+                var data = await User.findMascotaByHashcode(hashcode);
+            }
+
             if (ref == 'contacts'){
                 const idUsuario = req.query.id;
                 var data = await User.findContactsById(idUsuario);
@@ -422,7 +458,6 @@ module.exports = {
 
             if (ref == 'paciente'){
                 var data = await User.findByCod(cod);
-                console.log('¿debugdata',data);
             }
             if (ref == 'condicion'){
                 const enfermedad = await User.findEnfById(idPaciente);
@@ -463,6 +498,14 @@ module.exports = {
 
             if (ref == 'vacunas'){
                 var data = await User.findVacunasById(idPaciente);
+            }
+
+            if  (!data || data.length == 0){
+                return res.status(401).json({
+                    success: true,
+                    message: 'notFound',
+        
+                });
             }
 
             if  (data.length == 0){
