@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 DROP TABLE IF EXISTS dbPolicia CASCADE;
 CREATE TABLE dbPolicia(
 	id BIGSERIAL PRIMARY KEY,
