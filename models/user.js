@@ -772,7 +772,7 @@ User.updatePaciente = info => {
         tipoID = $3,
         numeroID = $4,
         telefono = $5,
-        edad = $6,
+        fecha_nacimiento = $6,
         genero = $7,
         ciudad = $8,
         departamento = $9,
