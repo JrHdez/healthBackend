@@ -282,7 +282,7 @@ User.createForm6 = (info) => {
     `;
 
     return db.oneOrNone(sql, [
-        info.idPaciente,
+        info.idPaciente,        
         info.tipoAntecedenteF,
         info.parentescoF,
         info.descripcionAntecedenteF,
@@ -490,14 +490,14 @@ User.findByCod = (cod) => {
     SELECT
     a_cargo_id, 
         pacientes.id, 
-        nombre as "Nombre",
-        apellido as "Apellido del paciente",
+        nombre as "nombre",
+        apellido as "apellido",
         tipoid as "Tipo de identificación",
         numeroid as "Número de identificación",
-        telefono as "Teléfono",
-        fecha_nacimiento,
+        telefono as "telefono",
+        fecha_nacimiento as "fechaNacimiento",
         genero as "Género",
-        direccion as "Dirección",
+        direccion as "direccion",
         ciudad,
         departamento,
         rh,

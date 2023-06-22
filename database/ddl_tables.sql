@@ -390,29 +390,39 @@ CREATE TABLE codes(
 	id BIGSERIAL PRIMARY KEY,
 	code VARCHAR(100) NOT NULL UNIQUE,
 	hashcode VARCHAR(100) NOT NULL UNIQUE,
+	license VARCHAR(50) NOT NULL UNIQUE,  <- nuevo campo para especificar el tipo de licencia de la pulsera
 	created_at TIMESTAMP(0) NOT NULL
 );
 
-DROP TABLE IF EXISTS agreementCodes CASCADE;
-CREATE TABLE agreementCodes(
+-> New table asociated to users (customers)
+
+DROP TABLE IF EXISTS license CASCADE;
+CREATE TABLE license(
 	id BIGSERIAL PRIMARY KEY,
-	code VARCHAR(100) NOT NULL UNIQUE,
-	hashcode VARCHAR(100) NOT NULL UNIQUE,
+	code VARCHAR(100) NOT NULL UNIQUE,   <- 9 chatacters Alfanumerical
 	agreement VARCHAR(50) NOT NULL UNIQUE,
+	discount DECIMAL(10) NOT NULL UNIQUE,
+	price NUMBER(100) NOT NULL UNIQUE,
+	total NUMBER(100) NOT NULL UNIQUE,
 	created_at TIMESTAMP(0) NOT NULL
 );
 
 
-DROP TABLE IF EXISTS users CASCADE;
+
+varios convenios con las empresas
+
+
+DROP TABLE IF EXISTS users CASCADE;  -> Change to customers
 CREATE TABLE users(
 	id BIGSERIAL PRIMARY KEY,
 	code VARCHAR(100) NOT NULL UNIQUE,
-	agreementCode VARCHAR(100) NOT NULL UNIQUE,
+	licenseCode VARCHAR(100) NOT NULL UNIQUE,
 	hashcode VARCHAR(200) NULL UNIQUE,
 	name VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
-	typeID VARCHAR(100) NOT NULL,
-	numberID VARCHAR(80) NOT NULL ,
+	typePerson VARCHAR(100) NOT NULL,   <- Natural y juridica (nuevo campo)
+	typeID VARCHAR(100) NOT NULL,     <- Agregar valor tipo NIT (CC, CE, PASSPORT, ETC)
+	numberID VARCHAR(80) NOT NULL,
 	phone VARCHAR(80) NOT NULL ,
 	email VARCHAR(255) NOT NULL UNIQUE,
 	parentesco VARCHAR(100) NULL,
@@ -423,7 +433,7 @@ CREATE TABLE users(
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL,
 	FOREIGN KEY (code) REFERENCES codes(code) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY (agreementCode) REFERENCES agreementCodes(code) ON UPDATE CASCADE ON DELETE CASCADE
+	FOREIGN KEY (licenseCode) REFERENCES license(code) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS pertenencias;
