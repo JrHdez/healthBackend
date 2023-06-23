@@ -496,7 +496,7 @@ User.findByCod = (cod) => {
         numeroid as "Número de identificación",
         telefono as "telefono",
         fecha_nacimiento as "fechaNacimiento",
-        genero as "Género",
+        genero as "genero",
         direccion as "direccion",
         ciudad,
         departamento,
@@ -505,9 +505,7 @@ User.findByCod = (cod) => {
         prepagada,
         arl,
         seguro_funerario as "Seguro funerario",
-        name as "Nombre del contacto",
-        parentesco,
-        phone as "Teléfono del contacto"
+        parentesco
     FROM 
         pacientes
     LEFT JOIN users ON pacientes.a_cargo_id = users.id
@@ -541,6 +539,22 @@ User.findContactsById = (id_usuario) => {
         telefono2,
         nombre3,
         telefono3
+    FROM 
+        contactos 
+    WHERE 
+        id_usuario = $1
+        `;
+
+    return db.oneOrNone(sql,id_usuario);
+}
+
+// Contacto principal
+
+User.findMainContactById = (id_usuario) => {
+    const sql = `
+    SELECT 
+		nombre1,
+        telefono1,
     FROM 
         contactos 
     WHERE 
